@@ -1,0 +1,54 @@
+---
+title: "Problem 23"
+output: html_document
+date: "2024-02-25"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**Problema.** A box contains 19 yellow, 32 green and 37 red jelly beans. If 15 jelly beans are selected at random, what is the probability that:
+
+(a) 11 are yellow?
+
+(b) 11 are yellow and 3 are green?
+
+(c) At least one is yellow?
+
+**Solución.**
+
+(a) En total, hay $19 + 32 + 37 = 88$ *jelly beans*. Hay $C(88,15)$ formas de tomar $15$ de ellos entre amarillos, verdes y rojos. En los $15$ que se toman, hay $C(19,11)\cdot C(69,4)$ formas de que $11$ sean amarillos y $4$ de otro color. Así, que la probabilidad de que $11$ sean amarillos es $$\begin{aligned}P&=\dfrac{C(19,11)\cdot C(69,4)}{C(88,15)} = \dfrac{\dfrac{19!}{11!8!}\dfrac{69!}{4!65!}}{\dfrac{88!}{15!73!}}\\ &= \dfrac{\dfrac{19\cdot18\cdot17\cdot16\cdot15\cdot14\cdot13\cdot12}{8\cdot7\cdot6\cdot5\cdot4\cdot3\cdot2}\dfrac{69\cdot68\cdot67\cdot66}{4\cdot3\cdot2}}{\dfrac{88\cdot87\cdot86\cdot85\cdot84\cdot83\cdot82\cdot81\cdot80\cdot79\cdot78\cdot77\cdot76\cdot75\cdot74}{15\cdot14\cdot13\cdot12\cdot11\cdot10\cdot9\cdot8\cdot7\cdot6\cdot5\cdot4\cdot3\cdot2}}\end{aligned}$$\
+    Ahora, nos disponemos a hacer las eliminaciones de los denominadores:$$\begin{aligned}P&= \dfrac{\dfrac{19\cdot18\cdot17\cdot13}{1}\dfrac{69\cdot17\cdot67\cdot11}{1}}{\dfrac{88\cdot87\cdot86\cdot85\cdot3\cdot83\cdot41\cdot79\cdot19\cdot37}{1}}\\
+    & = \dfrac{19\cdot18\cdot17\cdot13\cdot69\cdot17\cdot67\cdot11}{88\cdot87\cdot86\cdot85\cdot3\cdot83\cdot41\cdot79\cdot19\cdot37}\\
+    & = \dfrac{3\cdot13\cdot23\cdot17\cdot67}{4\cdot29\cdot86\cdot5\cdot83\cdot41\cdot79\cdot37}\\
+    &=\dfrac{3\cdot13\cdot17\cdot23\cdot67}{2^3\cdot5\cdot29\cdot37\cdot41\cdot43\cdot79\cdot83}
+    \end{aligned}.$$
+
+    En el examen y en WeBWorK, se puede quedar expresado así, pero podemos calcular en R:
+
+```{r}
+print(3 * 13 * 17 * 23 * 67 / (2 ^ 3 * 5 * 29 * 37 * 41 * 43 * 79 * 83))
+```
+
+(b) Ahora, las combinaciones favorables son $C(19,11)C(32,3)C(37,1)$. Entonces, la probabilidad es$$\begin{aligned}P&=\dfrac{C(19,11)C(32,3)C(37,1)}{C(88,15)} = \dfrac{\dfrac{19!}{11!8!}\dfrac{32!}{3!29!}\dfrac{37!}{1!36!}}{\dfrac{88!}{15!73!}}\\ &= \dfrac{19\cdot18\cdot17\cdot13\cdot\dfrac{32\cdot31\cdot30}{3\cdot2}\cdot37}{88\cdot87\cdot86\cdot85\cdot3\cdot83\cdot41\cdot79\cdot19\cdot37}\\ &= \dfrac{19\cdot18\cdot17\cdot13\cdot32\cdot31\cdot5}{88\cdot87\cdot86\cdot85\cdot3\cdot83\cdot41\cdot79\cdot19}\\ &= \dfrac{19\cdot2\cdot13\cdot2\cdot31}{11\cdot29\cdot43\cdot83\cdot41\cdot79\cdot19}\\ &= \dfrac{2^2\cdot13\cdot19\cdot31}{11\cdot19\cdot29\cdot41\cdot43\cdot79\cdot83}\end{aligned}$$
+
+Podemos calcular en R:
+
+```{r}
+2 ^ 2 * 13 * 19 * 31 / (11 * 19 * 29 * 41 * 43 * 79 * 83)
+```
+
+(c) Primero, calculamos la probabilidad de que no haya amarillos $$\begin{aligned}1-P&=\dfrac{C(69,15)}{C(88,15)} =\dfrac{\dfrac{69!}{15!54!}}{\dfrac{88!}{15!73!}} =\dfrac{69\cdot68\cdot67\cdot66\cdot65\cdot64\cdot63\cdot62\cdot61\cdot60\cdot59\cdot58\cdot57\cdot56\cdot55}{88\cdot87\cdot86\cdot85\cdot84\cdot83\cdot82\cdot81\cdot80\cdot79\cdot78\cdot77\cdot76\cdot75\cdot74}\\
+    &=\dfrac{23\cdot2\cdot67\cdot13\cdot31\cdot61\cdot59\cdot29}
+        {87\cdot43\cdot83\cdot41\cdot3\cdot5\cdot79\cdot13\cdot37}
+        =\dfrac{2\cdot23\cdot29\cdot31\cdot59\cdot61\cdot67}
+               {3\cdot5\cdot37\cdot41\cdot43\cdot79\cdot83\cdot87}\end{aligned}$$\
+    Así que$$P=1-\dfrac{2\cdot23\cdot29\cdot31\cdot59\cdot61\cdot67}
+               {3\cdot5\cdot37\cdot41\cdot43\cdot79\cdot83\cdot87}$$
+
+Así se puede introducir en WeBWorK, pero también en R:
+
+```{r}
+1 - 2 * 23 * 29 * 31 * 59 * 61 * 67 / (3 * 5 * 37 * 41 * 43 * 79 * 83 * 87)
+```
