@@ -1,0 +1,23 @@
+---
+title: "Problema 47"
+output: html_document
+date: "2024-02-27"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**Problema.** In a random sample of 1,000 people, it is found that 6.6% have a liver ailment. Of those who have a liver ailment, 10% are heavy drinkers, 65% are moderate drinkers, and 25% are nondrinkers. Of those who do not have a liver ailment, 10% are heavy drinkers, 43% are moderate drinkers, and 47% are nondrinkers. If a person is chosen at random, and he or she is a heavy drinker, what is the empirical probability of that person having a liver ailment?
+
+**Solución.** Nos preguntan la probabilidad de que una persona tenga enfermedad hepática dado que es tomador excesivo: $P(\text{Enfermedad Hepática} \mid \text{Tomador excesivo})$. Denotemos los siguientes eventos:
+
+-   $H$: tiene enfermedad hepática.
+
+-   $E$: es tomador excesivo.
+
+-   $M$: es tomador moderado.
+
+-   $N$: no toma.
+
+Entonces, nos preguntan $P(H\mid E)$. Tenemos los siguientes datos: $P(H)=0.066$, $P(E\mid H)=0.10$, $P(M\mid H)=0.65$, $P(N\mid H)=0.25$, $P(E\mid\overline H)=0.10$, $P(M\mid\overline H)=0.43$, $P(N\mid\overline H)=0.47$. Por el teorema de Bayes, tenemos que$$P(H\mid E)=\dfrac{P(E\mid H)P(H)}{P(E)}=\dfrac{0.10\cdot0.066}{P(E)}.$$Entonces, debemos calcular$$\begin{aligned}P(E)&=P(E\cap H) + P(E\cap\overline H)=P(E\mid H)P(H) + P(E\mid\overline H)P(\overline H)\\&=0.10\cdot 0.066 + 0.10\cdot (1-0.066)=0.10\end{aligned}$$De esta manera,$$P(H\mid E)=\dfrac{0.0066}{0.10}=0.066.$$
