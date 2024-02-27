@@ -10,13 +10,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 **Problema.** The presence of colorectal cancer can be tested via a fecal occult blood count test. Sometimes the test can give a positive result when the cancer is absent and sometimes the test records a negative when in fact the cancer is present. In a population of 10,000 adults screened for colorectal cancer via a fecal blood test, the following counts were recorded.
 
-|               |                |           |
-|---------------|----------------|-----------|
-|               | Cancer Present | No Cancer |
+|               |  Cancer Present              |       No Cancer    |
+|:---------------:|:----------------:|:-----------:|
 | Test positive | 20             | 294       |
 | Test negative | 10             | 9676      |
 
-Based on this information, find (to 3 decimal places) the **odds** that a person in the population has colorectal cancer given that their fecal occult blood test was positive. **Solución.** Consideremos los siguientes eventos:
+Based on this information, find (to 3 decimal places) the **odds** that a person in the population has colorectal cancer given that their fecal occult blood test was positive.
+
+**Solución.** Consideremos los siguientes eventos:
 
 -   $T$: el test da positivo.
 
